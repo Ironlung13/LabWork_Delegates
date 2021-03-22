@@ -13,13 +13,24 @@ namespace LabWork_Delegates
         }
         public string Name { get; }
         public bool Playing { get; set; } = false;
-        public event EventHandler<string> ReceivedBall;
-        public void OnReceivedBall(object sender, string e)
+        public event EventHandler<PingPongEventArgs> ReceivedBall;
+        public void OnReceivedBall(object sender, PingPongEventArgs e)
         {
             Thread.Sleep(500);
+            if (e.counter >= 15)
+            {
+                Random rand = new Random();
+                int change = rand.Next(1, 3);
+                if (change != 1)
+                {
+                    Console.WriteLine($"{Name} dropped the ball!");
+                    return;
+                }
+            }
             Console.Beep();
-            Console.WriteLine($"{Name} received ball from {e}.");
-            ReceivedBall(this, Name);
+            Console.WriteLine($"{Name} received ball from {e.name}.");
+            e.counter++;
+            ReceivedBall(this, new PingPongEventArgs(Name, e.counter));
         }
 
         public void Serve()
@@ -27,7 +38,7 @@ namespace LabWork_Delegates
             if (Playing)
             {
                 Console.WriteLine($"{Name} is serving.");
-                ReceivedBall(this, Name);
+                ReceivedBall(this, new PingPongEventArgs(Name, 1));
             }
             else
             {
