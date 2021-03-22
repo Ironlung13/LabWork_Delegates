@@ -14,6 +14,7 @@ namespace LabWork_Delegates
         public string Name { get; }
         public bool Playing { get; set; } = false;
         public event EventHandler<PingPongEventArgs> ReceivedBall;
+        public event EventHandler<bool> GameEnded;
         public void OnReceivedBall(object sender, PingPongEventArgs e)
         {
             Thread.Sleep(500);
@@ -24,12 +25,23 @@ namespace LabWork_Delegates
                 if (change >= 5)
                 {
                     Console.WriteLine($"{Name} dropped the ball!");
+                    GameEnded(this, true);
                     return;
                 }
             }
             Console.WriteLine($"{Name} received ball from {e.name}.");
             e.counter++;
             ReceivedBall(this, new PingPongEventArgs(Name, e.counter));
+        }
+        public void OnGameEnd(object sender, bool e)
+        {
+            Playing = false;
+            ReceivedBall = null;
+            if (e)
+            {
+                GameEnded(this, false);
+            }
+            GameEnded = null;
         }
     }
 }

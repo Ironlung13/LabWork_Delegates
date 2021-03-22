@@ -17,6 +17,8 @@ namespace LabWork_Delegates
             pong.Playing = true;
             ping.ReceivedBall += pong.OnReceivedBall;
             pong.ReceivedBall += ping.OnReceivedBall;
+            ping.GameEnded += pong.OnGameEnd;
+            pong.GameEnded += ping.OnGameEnd;
             ping.Serve();
         }
     }

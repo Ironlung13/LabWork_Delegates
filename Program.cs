@@ -40,6 +40,7 @@ namespace LabWork_Delegates
             Ping ping = new Ping("Andrew");
             Pong pong = new Pong("Kate");
             Game.Play(ping, pong);
+            Console.ReadLine();
         }
     }
 }
