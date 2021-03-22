@@ -54,7 +54,7 @@ namespace LabWork_Delegates
             Console.WriteLine();
             //Второй набор
             Console.WriteLine("Using ActionMethod2 method:");
-            Console.WriteLine(func(Task1Variant6.ActionMethod2, false, '!'));
+            Console.WriteLine(func(Task1Variant6.ActionMethod2, false, '?'));
         }
         public static void PlayGame()
         {
