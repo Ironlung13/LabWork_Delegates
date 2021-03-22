@@ -20,8 +20,8 @@ namespace LabWork_Delegates
             if (e.counter >= 15)
             {
                 Random rand = new Random();
-                int change = rand.Next(1, 3);
-                if (change != 1)
+                int change = rand.Next(1, 10);
+                if (change >= 5)
                 {
                     Console.WriteLine($"{Name} dropped the ball!");
                     return;
