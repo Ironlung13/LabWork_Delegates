@@ -27,7 +27,6 @@ namespace LabWork_Delegates
                     return;
                 }
             }
-            Console.Beep();
             Console.WriteLine($"{Name} received ball from {e.name}.");
             e.counter++;
             ReceivedBall(this, new PingPongEventArgs(Name, e.counter));
