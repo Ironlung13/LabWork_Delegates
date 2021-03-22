@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace LabWork_Delegates
 {
@@ -52,6 +53,7 @@ namespace LabWork_Delegates
         {
             if (e > 0)
             {
+                Thread.Sleep(300);
                 if (Cartridges != 0)
                 {
                     //Оружие заряжено
